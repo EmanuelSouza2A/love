@@ -3,135 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minha Mensagem Secreta</title>
+    <title>PROJETO: INFINITO</title>
     <style>
-        /* ======================================= */
-        /* === ESTILOS GLOBAIS E BACKGROUND HACKER === */
-        /* ======================================= */
         body {
             margin: 0;
             height: 100vh;
             display: flex;
-            flex-direction: column; /* Para texto e coração ficarem um sobre o outro */
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            overflow: hidden; /* Garante que nada saia da tela */
-            background: linear-gradient(270deg, #1a0033, #000000, #330066, #000000); /* Degradê roxo e preto */
-            background-size: 400% 400%;
-            /* ANIMAÇÃO DE FUNDO INFINITA (EFEITO HACKER/CÓSMICO) */
-            animation: backgroundGradient 20s ease infinite alternate; /* Mais suave e com alternância */
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte moderna */
-            color: #E0E0E0; /* Cor de texto padrão clara */
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.3); /* Um leve brilho no texto */
+            background: #050505; /* Fundo preto profundo para destacar o neon */
+            font-family: 'Arial Black', sans-serif;
+            overflow: hidden;
         }
 
-        /* Animação do degradê de fundo */
-        @keyframes backgroundGradient {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
-        }
-
-        /* ======================================= */
-        /* === ESTILO DO TEXTO PULSANTE INCRÍVEL === */
-        /* ======================================= */
+        /* --- TEXTO PULSANTE --- */
         .texto-pulsante {
-            font-size: 4.5rem; /* Tamanho GRANDE para impacto */
-            font-weight: 900; /* Super negrito */
-            text-transform: uppercase;
-            letter-spacing: 5px; /* Espaçamento entre letras para estilo */
-            color: #FF69B4; /* Rosa choque para o coração da mensagem */
-            margin-bottom: 40px; /* Espaço entre o texto e o coração */
+            color: #fff;
+            font-size: 3.5rem;
             text-align: center;
-            line-height: 1.2; /* Ajuste da altura da linha */
-
-            /* ANIMAÇÃO DE PULSAR O TEXTO INFINITAMENTE E DE FORMA PROFISSIONAL */
-            animation: pulsateText 2.5s ease-in-out infinite alternate;
+            text-transform: uppercase;
+            margin-bottom: 50px;
+            letter-spacing: 4px;
+            /* Mistura de pulso de tamanho e brilho neon */
+            animation: superPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            text-shadow: 0 0 10px #ff0055, 0 0 20px #ff0055;
         }
 
-        /* Keyframes para a animação do texto pulsante */
-        @keyframes pulsateText {
-            0% {
-                transform: scale(1);
-                opacity: 0.8;
-                text-shadow: 0 0 10px #FF69B4, 0 0 20px #FF69B4; /* Brilho sutil */
-            }
-            50% {
-                transform: scale(1.08); /* Pulsa um pouco mais */
-                opacity: 1;
-                text-shadow: 0 0 20px #FF69B4, 0 0 40px #FF69B4, 0 0 60px #FF69B4; /* Brilho intenso no pico */
-            }
-            100% {
-                transform: scale(1);
-                opacity: 0.8;
-                text-shadow: 0 0 10px #FF69B4, 0 0 20px #FF69B4; /* Volta ao brilho sutil */
-            }
+        @keyframes superPulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; text-shadow: 0 0 20px #ff0055, 0 0 40px #ff0055, 0 0 60px #ff0055; }
         }
 
-        /* ======================================= */
-        /* === ESTILO DO CORAÇÃO SE FORMANDO EM LOOP === */
-        /* ======================================= */
-        .coracao-container {
-            width: 200px; /* Tamanho do container do coração */
-            height: 200px;
+        /* --- O CORAÇÃO QUE ENCHE (DE BAIXO PARA CIMA) --- */
+        .container-coracao {
             position: relative;
-            transform: translateY(50px); /* Para o coração "subir" do fundo */
-            /* ANIMAÇÃO DO CORAÇÃO SE FORMANDO DE BAIXO PARA CIMA EM LOOP */
-            animation: drawHeart 4s ease-in-out infinite;
+            width: 150px;
+            height: 150px;
         }
 
-        .coracao-caminho {
-            fill: none;
-            stroke: #FF0077; /* Cor do traço do coração */
-            stroke-width: 8; /* Espessura do traço */
-            stroke-dasharray: 600; /* Define o "comprimento" do traço para a animação */
-            stroke-dashoffset: 600; /* Começa com o traço "invisível" */
-            /* O stroke-dasharray foi calculado para um SVG de coração. */
-            /* Se o SVG mudar, esse valor pode precisar ser ajustado. */
+        /* Coração vazio (o fundo/contorno) */
+        .coracao-vazio {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #333; /* Cor do coração antes de encher */
+            clip-path: path('M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z');
+            transform: scale(6); /* Ajuste de escala para o path SVG */
+            transform-origin: center;
         }
 
-        /* Keyframes para a animação de desenhar o coração */
-        @keyframes drawHeart {
+        /* Coração que enche (a cor que sobe) */
+        .coracao-cheio {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, #ff0055, #ff5e00); /* Cor degradê do preenchimento */
+            clip-path: path('M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z');
+            transform: scale(6);
+            transform-origin: center;
+            
+            /* ANIMAÇÃO DE BAIXO PARA CIMA */
+            animation: encherCoracao 3s ease-in-out infinite;
+        }
+
+        @keyframes encherCoracao {
             0% {
-                stroke-dashoffset: 600; /* Coração não visível */
+                clip-path: inset(100% 0 0 0); /* Começa cortado embaixo (vazio) */
             }
             50% {
-                stroke-dashoffset: 0; /* Coração totalmente desenhado */
+                clip-path: inset(0% 0 0 0); /* Sobe até o topo (cheio) */
             }
             100% {
-                stroke-dashoffset: 600; /* Coração se "desfaz" ou volta para o início */
+                clip-path: inset(0% 0 100% 0); /* Sai pelo topo ou reinicia (loop) */
             }
         }
 
-        /* Estilo para a "bolinha" no topo do coração quando ele está desenhado */
-        .coracao-ponto {
-            fill: #FF0077; /* Cor da bolinha */
-            opacity: 0; /* Começa invisível */
-            /* Animação para a bolinha aparecer junto com o coração */
-            animation: showDot 4s ease-in-out infinite;
+        /* Efeito de brilho extra no fundo */
+        .glow {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: #ff0055;
+            filter: blur(100px);
+            border-radius: 50%;
+            opacity: 0.3;
+            z-index: -1;
         }
-
-        /* Keyframes para a bolinha aparecer */
-        @keyframes showDot {
-            0%, 40% { opacity: 0; } /* Invisível no início */
-            50% { opacity: 1; } /* Aparece quando o coração está completo */
-            100% { opacity: 0; } /* Volta a ser invisível */
-        }
-
-        /* O SVG real que desenha o coração */
-        /* Este é um caminho SVG padrão para um coração. */
     </style>
 </head>
 <body>
+
+    <div class="glow"></div>
 
     <div class="texto-pulsante">
         EU TE QUERO PARA MIM
     </div>
 
-    <div class="coracao-container">
-        <svg viewBox="0 0 24 24" width="100%" height="100%">
-            <path class="coracao-caminho" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-            <circle class="coracao-ponto" cx="12" cy="8.5" r="2"/>
-        </svg>
+    <div class="container-coracao">
+        <div class="coracao-vazio"></div>
+        <div class="coracao-cheio"></div>
     </div>
 
 </body>
