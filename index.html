@@ -2,85 +2,136 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Para Você ❤️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Mensagem Secreta</title>
     <style>
+        /* ======================================= */
+        /* === ESTILOS GLOBAIS E BACKGROUND HACKER === */
+        /* ======================================= */
         body {
+            margin: 0;
+            height: 100vh;
             display: flex;
+            flex-direction: column; /* Para texto e coração ficarem um sobre o outro */
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background-color: #f0f2f5;
-            margin: 0;
-            font-family: 'Arial', sans-serif;
+            overflow: hidden; /* Garante que nada saia da tela */
+            background: linear-gradient(270deg, #1a0033, #000000, #330066, #000000); /* Degradê roxo e preto */
+            background-size: 400% 400%;
+            /* ANIMAÇÃO DE FUNDO INFINITA (EFEITO HACKER/CÓSMICO) */
+            animation: backgroundGradient 20s ease infinite alternate; /* Mais suave e com alternância */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte moderna */
+            color: #E0E0E0; /* Cor de texto padrão clara */
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.3); /* Um leve brilho no texto */
         }
 
-        .container {
+        /* Animação do degradê de fundo */
+        @keyframes backgroundGradient {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        /* ======================================= */
+        /* === ESTILO DO TEXTO PULSANTE INCRÍVEL === */
+        /* ======================================= */
+        .texto-pulsante {
+            font-size: 4.5rem; /* Tamanho GRANDE para impacto */
+            font-weight: 900; /* Super negrito */
+            text-transform: uppercase;
+            letter-spacing: 5px; /* Espaçamento entre letras para estilo */
+            color: #FF69B4; /* Rosa choque para o coração da mensagem */
+            margin-bottom: 40px; /* Espaço entre o texto e o coração */
             text-align: center;
+            line-height: 1.2; /* Ajuste da altura da linha */
+
+            /* ANIMAÇÃO DE PULSAR O TEXTO INFINITAMENTE E DE FORMA PROFISSIONAL */
+            animation: pulsateText 2.5s ease-in-out infinite alternate;
         }
 
-        h1 {
-            color: #e74c3c;
-            margin-bottom: 20px;
-            animation: fadeIn 2s ease-in-out;
+        /* Keyframes para a animação do texto pulsante */
+        @keyframes pulsateText {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+                text-shadow: 0 0 10px #FF69B4, 0 0 20px #FF69B4; /* Brilho sutil */
+            }
+            50% {
+                transform: scale(1.08); /* Pulsa um pouco mais */
+                opacity: 1;
+                text-shadow: 0 0 20px #FF69B4, 0 0 40px #FF69B4, 0 0 60px #FF69B4; /* Brilho intenso no pico */
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0.8;
+                text-shadow: 0 0 10px #FF69B4, 0 0 20px #FF69B4; /* Volta ao brilho sutil */
+            }
         }
 
-        /* O Coração */
-        .heart {
+        /* ======================================= */
+        /* === ESTILO DO CORAÇÃO SE FORMANDO EM LOOP === */
+        /* ======================================= */
+        .coracao-container {
+            width: 200px; /* Tamanho do container do coração */
+            height: 200px;
             position: relative;
-            width: 100px;
-            height: 90px;
-            background-color: #e74c3c;
-            margin: 0 auto;
-            /* Loop Infinito de Pulsação */
-            animation: heartbeat 1.2s infinite;
-            transform-origin: center;
+            transform: translateY(50px); /* Para o coração "subir" do fundo */
+            /* ANIMAÇÃO DO CORAÇÃO SE FORMANDO DE BAIXO PARA CIMA EM LOOP */
+            animation: drawHeart 4s ease-in-out infinite;
         }
 
-        .heart:before,
-        .heart:after {
-            content: "";
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            background-color: #e74c3c;
-            border-radius: 50%;
+        .coracao-caminho {
+            fill: none;
+            stroke: #FF0077; /* Cor do traço do coração */
+            stroke-width: 8; /* Espessura do traço */
+            stroke-dasharray: 600; /* Define o "comprimento" do traço para a animação */
+            stroke-dashoffset: 600; /* Começa com o traço "invisível" */
+            /* O stroke-dasharray foi calculado para um SVG de coração. */
+            /* Se o SVG mudar, esse valor pode precisar ser ajustado. */
         }
 
-        .heart:before {
-            top: -50px;
-            left: 0;
+        /* Keyframes para a animação de desenhar o coração */
+        @keyframes drawHeart {
+            0% {
+                stroke-dashoffset: 600; /* Coração não visível */
+            }
+            50% {
+                stroke-dashoffset: 0; /* Coração totalmente desenhado */
+            }
+            100% {
+                stroke-dashoffset: 600; /* Coração se "desfaz" ou volta para o início */
+            }
         }
 
-        .heart:after {
-            left: 50px;
-            top: 0;
+        /* Estilo para a "bolinha" no topo do coração quando ele está desenhado */
+        .coracao-ponto {
+            fill: #FF0077; /* Cor da bolinha */
+            opacity: 0; /* Começa invisível */
+            /* Animação para a bolinha aparecer junto com o coração */
+            animation: showDot 4s ease-in-out infinite;
         }
 
-        /* Rotação para o formato de coração */
-        .heart-shape {
-            transform: rotate(-45deg);
+        /* Keyframes para a bolinha aparecer */
+        @keyframes showDot {
+            0%, 40% { opacity: 0; } /* Invisível no início */
+            50% { opacity: 1; } /* Aparece quando o coração está completo */
+            100% { opacity: 0; } /* Volta a ser invisível */
         }
 
-        /* Animação de Batimento */
-        @keyframes heartbeat {
-            0% { transform: rotate(-45deg) scale(1); }
-            20% { transform: rotate(-45deg) scale(1.2); }
-            40% { transform: rotate(-45deg) scale(1.1); }
-            60% { transform: rotate(-45deg) scale(1.4); }
-            100% { transform: rotate(-45deg) scale(1); }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+        /* O SVG real que desenha o coração */
+        /* Este é um caminho SVG padrão para um coração. */
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Eu te amo</h1>
-        <div class="heart heart-shape"></div>
+    <div class="texto-pulsante">
+        EU TE QUERO PARA MIM
+    </div>
+
+    <div class="coracao-container">
+        <svg viewBox="0 0 24 24" width="100%" height="100%">
+            <path class="coracao-caminho" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            <circle class="coracao-ponto" cx="12" cy="8.5" r="2"/>
+        </svg>
     </div>
 
 </body>
