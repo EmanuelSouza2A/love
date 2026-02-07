@@ -5,91 +5,151 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EU TE QUERO 🥰💕</title>
     <style>
-        body {
+        /* RESET DE PÁGINA */
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
             height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background-color: #000; /* Fundo preto absoluto */
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            /* FUNDO PROFISSIONAL GRADIENTE RADIAL */
+            background: radial-gradient(circle at center, #1a0008 0%, #000000 100%);
+            font-family: 'Arial Black', Gadget, sans-serif;
             overflow: hidden;
+            color: #fff;
         }
 
         /* TEXTO PULSANTE COM EMOJIS */
-        .texto-principal {
-            color: #fff;
-            font-size: 2.5rem;
-            font-weight: bold;
+        .mensagem {
+            font-size: clamp(1.5rem, 6vw, 3.2rem);
             text-align: center;
-            margin-bottom: 50px;
             text-transform: uppercase;
-            /* Animação de pulso */
-            animation: pulsarTexto 1.5s ease-in-out infinite alternate;
-            text-shadow: 0 0 20px #ff0055;
+            margin-bottom: 40px;
+            color: #ffffff;
+            letter-spacing: 2px;
+            /* ANIMAÇÃO DE PULSO E BRILHO */
+            animation: pulseText 2s ease-in-out infinite alternate;
+            text-shadow: 0 0 20px #ff0055, 0 0 40px #ff0055;
+            padding: 0 20px;
         }
 
-        @keyframes pulsarTexto {
-            from { transform: scale(1); opacity: 0.8; }
-            to { transform: scale(1.1); opacity: 1; text-shadow: 0 0 30px #ff0055, 0 0 50px #ff0055; }
+        @keyframes pulseText {
+            0% { transform: scale(1); opacity: 0.9; text-shadow: 0 0 20px #ff0055; }
+            100% { transform: scale(1.08); opacity: 1; text-shadow: 0 0 40px #ff0055, 0 0 60px #ff4d00; }
         }
 
         /* CONTAINER DO CORAÇÃO */
-        .container-coracao {
+        .heart-wrapper {
             position: relative;
-            width: 300px;
-            height: 300px;
+            width: 320px;
+            height: 320px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        /* ESTILO DO SVG */
+        /* NÚMERO DA PORCENTAGEM (DYNAMIC) */
+        #percentage-label {
+            position: absolute;
+            font-size: 3rem;
+            font-weight: 900;
+            z-index: 10;
+            color: #fff;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+            font-variant-numeric: tabular-nums; /* Evita que o número "trema" ao mudar */
+        }
+
+        /* ESTILIZAÇÃO DO SVG */
         svg {
             width: 100%;
             height: 100%;
-            drop-shadow: 0 0 20px #ff0055;
+            filter: drop-shadow(0 0 25px rgba(255, 0, 85, 0.6));
         }
 
-        /* A COR QUE SOBE (PREENCHIMENTO) */
-        .preenchimento {
+        /* COR QUE VAI SUBIR */
+        #fill-rect {
             fill: #ff0055;
-            /* Animação: começa embaixo (y=24) e sobe (y=0) */
-            animation: subirCor 3s ease-in-out infinite;
+            /* Transição suave para o movimento do retângulo */
+            transition: height 0.1s linear, y 0.1s linear;
         }
 
-        @keyframes subirCor {
-            0% { y: 24; height: 0; }
-            50% { y: 0; height: 24; }
-            100% { y: 24; height: 0; }
-        }
+        /* CONTORNO E FUNDO DO CORAÇÃO */
+        .heart-bg { fill: #1a1a1a; }
+        .heart-border { fill: none; stroke: #ff0055; stroke-width: 0.2; opacity: 0.5; }
 
-        /* O CONTORNO DO CORAÇÃO */
-        .contorno {
-            fill: none;
-            stroke: #333;
-            stroke-width: 0.5;
-        }
     </style>
 </head>
 <body>
 
-    <h1 class="texto-principal">EU TE QUERO PARA MIM 🥰💕</h1>
+    <div class="mensagem">
+        EU TE QUERO PARA MIM 🥰💕
+    </div>
 
-    <div class="container-coracao">
+    <div class="heart-wrapper">
+        <div id="percentage-label">0%</div>
+
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <defs>
-                <clipPath id="coracao-mask">
+                <clipPath id="heart-clip">
                     <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                 </clipPath>
             </defs>
 
-            <path fill="#1a1a1a" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            <path class="heart-bg" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
 
-            <rect class="preenchimento" x="0" width="24" clip-path="url(#coracao-mask)" />
-            
-            <path class="contorno" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            <rect id="fill-rect" x="0" y="24" width="24" height="0" clip-path="url(#heart-clip)" />
+
+            <path class="heart-border" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
         </svg>
     </div>
 
+    <script>
+        const fillRect = document.getElementById('fill-rect');
+        const label = document.getElementById('percentage-label');
+        
+        let percentage = 0;
+        let direction = 1; // 1 para subir, -1 para descer
+
+        function updateHeart() {
+            // Lógica de incremento/decremento
+            if (direction === 1) {
+                percentage += 0.4; // Velocidade de subida
+                if (percentage >= 100) {
+                    percentage = 100;
+                    direction = -1; // Inverte para descer
+                }
+            } else {
+                percentage -= 0.6; // Velocidade de descida (um pouco mais rápido)
+                if (percentage <= 0) {
+                    percentage = 0;
+                    direction = 1; // Inverte para subir
+                }
+            }
+
+            // Cálculo para o SVG: a coordenada Y começa em 24 (vazio) e vai até 0 (cheio)
+            // A altura (height) vai de 0 a 24.
+            const hValue = (percentage / 100) * 24;
+            const yValue = 24 - hValue;
+
+            // Aplica ao elemento SVG
+            fillRect.setAttribute('height', hValue);
+            fillRect.setAttribute('y', yValue);
+
+            // Atualiza o número na tela
+            label.textContent = Math.floor(percentage) + "%";
+
+            // Chama o próximo frame da animação (Loop Infinito)
+            requestAnimationFrame(updateHeart);
+        }
+
+        // Inicia a execução
+        updateHeart();
+    </script>
 </body>
 </html>
