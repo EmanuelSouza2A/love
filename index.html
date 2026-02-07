@@ -2,25 +2,49 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Alex Dev</title>
     <style>
-        /* Definindo as variáveis que o seu código usa */
         :root {
-            --letter-love: 200px;
-            --letter: #ff4d6d; /* Um tom de rosa/vermelho */
+            --letter-love: 150px;
+            --letter: #ff3366;
         }
 
         body {
-            background-color: #000; /* Fundo escuro igual da imagem */
+            background-color: #0b0116; /* Fundo escuro da imagem */
+            display: flex;
+            justify-content: center;
+            align-items: center;
             height: 100vh;
             margin: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        /* O comando que estava na sua imagem */
+        .Love_You {
+            position: absolute;
+            width: 90%;
+            font-size: 2rem;
+            font-family: 'Courier New', Courier, monospace;
+            height: var(--letter-love);
+            transform: translateX(-50%);
+            background: var(--letter);
+            left: 50%;
+            top: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 51, 102, 0.5);
         }
     </style>
 </head>
 <body>
 
     <div class="Love_You">
-        Te Amo
+        .Love_You { code: "sucesso" }
     </div>
 
 </body>
